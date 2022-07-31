@@ -1,18 +1,22 @@
-import React from 'react'
-import { CounterStateContext } from '../counterContext';
-import '../styles/App.css';
-import { CounterList } from './CounterList';
-const App = () => {
+import React, { createContext, useState } from "react";
 
-  return (
-    <CounterStateContext>
-      <div id="main">
-        <CounterList />
-      </div>
-    </CounterStateContext>
 
-  )
+
+
+
+const counterContext = createContext()
+
+
+const CounterStateContext = (props) => {
+const [count, setCount] = useState(0);
+    return (
+        <div id="counter-context">
+            <counterContext.Provider value={{ count, setCount }}>
+                {props.children}
+            </counterContext.Provider >
+        </div>
+
+    )
 }
 
-
-export default App;
+export { counterContext, CounterStateContext }
